@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+final_space: true
+version: 2
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - foreground: '#f8f8f2'
+        style: plain
+        template: ╭─
+        type: text
+      - foreground: '#d6acff'
+        properties:
+          style: folder
+        style: plain
+        template: '<#69ff94><b>{{ .UserName }}@{{ .HostName }}</b></> <b>{{ .PWD }}</b> '
+        type: path
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - foreground: '#f8f8f2'
+        style: plain
+        template: '│ '
+        type: text
+      - foreground: '#ff9b9b'
+        properties:
+          branch_icon: ''
+        style: plain
+        template: '<#89b4fa>git:(</><#50fa7b>{{ .HEAD }}</#><#89b4fa>)</> '
+        type: git
+      - style: plain
+        properties:
+          always_enabled: true
+        template:
+          '⌛
+          {{ if le .Ms 200 }}<green>{{ .FormattedMs }}</>{{ else }}
+          {{ if le .Ms 500 }}<yellow>{{ .FormattedMs }}</>{{ else }}
+          <red>{{ .FormattedMs }}</>{{ end }}{{ end }} '
+        type: executiontime
+      - style: plain
+        template: '⏰ {{ .CurrentDate | date .Format }} '
+        type: time
+      - style: plain
+        template: '🐞 '
+        type: exit
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - foreground: '#f8f8f2'
+        style: plain
+        template: ╰─<b>$</b>
+        type: text
