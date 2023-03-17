@@ -13,3 +13,6 @@ eval "$(oh-my-posh init bash --config ~/lete114.minimal.omp.yaml)"
 # Once altered, reload your profile for the changes to take effect.
 exec bash
 ```
+
+## lete114
+![](./lete114/lete114.png)
