@@ -34,10 +34,9 @@ blocks:
         properties:
           always_enabled: true
         template:
-          '⌛
-          {{ if le .Ms 200 }}<green>{{ .FormattedMs }}</>{{ else }}
-          {{ if le .Ms 500 }}<yellow>{{ .FormattedMs }}</>{{ else }}
-          <red>{{ .FormattedMs }}</>{{ end }}{{ end }} '
+          '⌛ {{ if le .Ms 200 }}<green>{{ .FormattedMs }}</>{{ else }}{{ 
+          if le .Ms 500 }}<yellow>{{ .FormattedMs }}</>{{ 
+          else }}<red>{{ .FormattedMs }}</>{{ end }}{{ end }} '
         type: executiontime
       - style: plain
         template: '⏰ {{ .CurrentDate | date .Format }} '
