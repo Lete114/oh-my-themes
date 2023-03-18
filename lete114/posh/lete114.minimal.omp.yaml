@@ -6,49 +6,55 @@ blocks:
   - type: prompt
     alignment: left
     segments:
-      - foreground: '#f8f8f2'
+      - type: text
+        foreground: '#f8f8f2'
         style: plain
         template: ╭─
-        type: text
-      - foreground: '#d6acff'
+
+      - type: path
+        foreground: '#d6acff'
         properties:
           style: folder
         style: plain
-        template: '<#69ff94><b>{{ .UserName }}@{{ .HostName }}</b></> <b>{{ .PWD }}</b> '
-        type: path
+        template:
+          '<{{ if .Root }}red{{ else }}#69ff94{{ end }}><b>{{ .UserName }}@{{ .HostName }}</b></>
+          <b>{{ .PWD }}</b> '
+
   - type: prompt
     alignment: left
     newline: true
     segments:
-      - foreground: '#f8f8f2'
+      - type: text
+        foreground: '#f8f8f2'
         style: plain
         template: '│ '
-        type: text
-      - foreground: '#ff9b9b'
-        properties:
-          branch_icon: ''
+
+      - type: time
         style: plain
-        template: '<#89b4fa>git:(</><#50fa7b>{{ .HEAD }}</#><#89b4fa>)</> '
-        type: git
-      - style: plain
+        template: '⏱️  {{ .CurrentDate | date .Format }} '
+
+      - type: executiontime
+        style: plain
         properties:
           always_enabled: true
         template:
-          '⌛ {{ if le .Ms 200 }}<green>{{ .FormattedMs }}</>{{ else }}{{ 
-          if le .Ms 500 }}<yellow>{{ .FormattedMs }}</>{{ 
+          '⌛ {{ if le .Ms 200 }}<green>{{ .FormattedMs }}</>{{ else }}{{
+          if le .Ms 500 }}<yellow>{{ .FormattedMs }}</>{{
           else }}<red>{{ .FormattedMs }}</>{{ end }}{{ end }} '
-        type: executiontime
-      - style: plain
-        template: '⏱️  {{ .CurrentDate | date .Format }} '
-        type: time
-      - style: plain
-        template: '🐞 '
-        type: exit
+
+      - type: git
+        foreground: '#ff9b9b'
+        properties:
+          branch_icon: ''
+          fetch_status: true
+        style: plain
+        template: '<#89b4fa>git:(</><#50fa7b>{{ .HEAD }}</#><#89b4fa>)</> '
+
   - type: prompt
     alignment: left
     newline: true
     segments:
-      - foreground: '#f8f8f2'
+      - type: text
+        foreground: '#f8f8f2'
         style: plain
-        template: ╰─<b>$</b>
-        type: text
+        template: ╰─<b>{{ if .Root }}#{{ else }}${{ end }}</b>
