@@ -39,7 +39,7 @@ blocks:
           else }}<red>{{ .FormattedMs }}</>{{ end }}{{ end }} '
         type: executiontime
       - style: plain
-        template: '⏰ {{ .CurrentDate | date .Format }} '
+        template: '⏱️  {{ .CurrentDate | date .Format }} '
         type: time
       - style: plain
         template: '🐞 '

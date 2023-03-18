@@ -1,0 +1,1 @@
+C:/Users/Lete/.oh-my-zsh/custom/themes/lete114.zsh-theme
